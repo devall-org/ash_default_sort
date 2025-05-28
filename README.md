@@ -9,7 +9,7 @@ Add `ash_default_sort` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:ash_default_sort, "~> 0.1.0"}
+    {:ash_default_sort, "~> 0.2.0"}
   ]
 end
 ```
