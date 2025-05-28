@@ -1,4 +1,4 @@
-alias AshDefaultSort.RelationshipSortTest, as: ThisTest
+alias AshDefaultSort.HasManySortTest, as: ThisTest
 
 defmodule ThisTest.TodoList do
   use Ash.Resource,
