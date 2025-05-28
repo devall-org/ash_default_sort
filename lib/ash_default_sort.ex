@@ -45,7 +45,7 @@ defmodule AshDefaultSort do
   use Spark.Dsl.Extension,
     sections: [@default_sort],
     transformers: [
-      AshDefaultSort.Transformer,
+      AshDefaultSort.Sort.Transformer,
       AshDefaultSort.HasManySort.Transformer
     ]
 end

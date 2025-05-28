@@ -1,4 +1,4 @@
-defmodule AshDefaultSort.Preparation do
+defmodule AshDefaultSort.Sort.Preparation do
   use Ash.Resource.Preparation
 
   def prepare(query, [sort: sort], _context) do

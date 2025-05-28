@@ -1,4 +1,4 @@
-defmodule AshDefaultSort.Transformer do
+defmodule AshDefaultSort.Sort.Transformer do
   use Spark.Dsl.Transformer
 
   alias Spark.Dsl.Transformer
@@ -20,7 +20,9 @@ defmodule AshDefaultSort.Transformer do
     |> Enum.reject(&(&1.name in except))
     |> Enum.reject(&(&1.primary? && !include_primary_read?))
     |> Enum.map(fn %Ash.Resource.Actions.Read{preparations: preparations} = read ->
-      {:ok, preparation} = Builder.build_preparation({AshDefaultSort.Preparation, sort: sort})
+      {:ok, preparation} =
+        Builder.build_preparation({AshDefaultSort.Sort.Preparation, sort: sort})
+
       %Ash.Resource.Actions.Read{read | preparations: preparations ++ [preparation]}
     end)
     |> Enum.reduce(dsl_state, fn action, dsl_state ->
