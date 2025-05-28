@@ -22,6 +22,13 @@ defmodule Post do
     data_layer: Ash.DataLayer.Postgres,
     extensions: [AshDefaultSort]
 
+  relationships do
+    has_many :comments, Comment
+    has_many :tags, Tag do
+      sort [id: :asc]
+    end
+  end
+
   actions do
     read :read do
       primary? true
@@ -36,18 +43,22 @@ defmodule Post do
 
     read :read_every do
     end
+  end
 
   default_sort do
     sort [like_count: :desc, created_at: :desc]
+    has_many_sort [id: :desc]
     include_primary_read? false
     except [:read_all]
   end
 end
 ```
 
-In the example above, [like_count: :desc, created_at: :desc] is applied to `read_every`.
+In the example above, `[like_count: :desc, created_at: :desc]` is applied to `read_every`.
 
-This is because `read` is excluded by `include_primary_read? false`, `read_sorted` is not affected because it already includes a sort, and `read_all` is excluded by the `except` option.
+This is because `read` is excluded by `include_primary_read? false`, `read_sorted` is not affected because it already includes a `sort`, and `read_all` is excluded by the `except` option.
+
+And the `default_sort` for `comments` is set to `[id: :desc]` because `has_many_sort` is present, and `comments` has no `sort` or `default_sort` options.
 
 ## License
 
