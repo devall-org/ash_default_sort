@@ -1,10 +1,12 @@
 defmodule AshDefaultSort.SortTest do
   use ExUnit.Case, async: true
 
+  alias __MODULE__.{Obj, Domain}
+
   defmodule Obj do
     use Ash.Resource,
       data_layer: Ash.DataLayer.Ets,
-      domain: AshDefaultSort.TestDomain,
+      domain: Domain,
       extensions: [AshDefaultSort]
 
     attributes do
@@ -19,6 +21,14 @@ defmodule AshDefaultSort.SortTest do
 
     default_sort do
       sort age: :desc
+    end
+  end
+
+  defmodule Domain do
+    use Ash.Domain
+
+    resources do
+      resource Obj
     end
   end
 

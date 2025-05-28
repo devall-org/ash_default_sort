@@ -1,12 +1,12 @@
 defmodule AshDefaultSort.HasManySortTest do
   use ExUnit.Case, async: true
 
-  alias __MODULE__.{TodoList, Task}
+  alias __MODULE__.{TodoList, Task, Domain}
 
   defmodule TodoList do
     use Ash.Resource,
       data_layer: Ash.DataLayer.Ets,
-      domain: AshDefaultSort.TestDomain,
+      domain: Domain,
       extensions: [AshDefaultSort]
 
     attributes do
@@ -36,7 +36,7 @@ defmodule AshDefaultSort.HasManySortTest do
   defmodule Task do
     use Ash.Resource,
       data_layer: Ash.DataLayer.Ets,
-      domain: AshDefaultSort.TestDomain,
+      domain: Domain,
       extensions: [AshDefaultSort]
 
     attributes do
@@ -53,6 +53,15 @@ defmodule AshDefaultSort.HasManySortTest do
     end
 
     default_sort do
+    end
+  end
+
+  defmodule Domain do
+    use Ash.Domain
+
+    resources do
+      resource TodoList
+      resource Task
     end
   end
 
