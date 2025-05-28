@@ -14,8 +14,8 @@ defmodule AshDefaultSort.HasManySort.Transformer do
         dsl_state
         |> Transformer.get_entities([:relationships])
         |> Enum.filter(&(&1.type == :has_many))
+        |> Enum.reject(&(&1.default_sort || &1.sort))
         |> Enum.reject(&(&1.name in except))
-        |> Enum.reject(& &1.default_sort)
         |> Enum.map(&%{&1 | default_sort: has_many_sort})
         |> Enum.reduce(dsl_state, fn has_many, dsl_state ->
           Transformer.replace_entity(

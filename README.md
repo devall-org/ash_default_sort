@@ -24,7 +24,7 @@ defmodule Post do
 
   relationships do
     has_many :comments, Comment
-    has_many :tags, :Tag do
+    has_many :tags, Tag do
       sort [id: :asc]
     end
   end
@@ -54,11 +54,11 @@ defmodule Post do
 end
 ```
 
-In the example above, [like_count: :desc, created_at: :desc] is applied to `read_every`.
+In the example above, `[like_count: :desc, created_at: :desc]` is applied to `read_every`.
 
-This is because `read` is excluded by `include_primary_read? false`, `read_sorted` is not affected because it already includes a sort, and `read_all` is excluded by the `except` option.
+This is because `read` is excluded by `include_primary_read? false`, `read_sorted` is not affected because it already includes a `sort`, and `read_all` is excluded by the `except` option.
 
-And comments are sorted by [id: :desc] because `has_many_sort` is applied.
+And the `default_sort` for `comments` is set to `[id: :desc]` because `has_many_sort` is present, and `comments` has no `sort` or `default_sort` options.
 
 ## License
 
