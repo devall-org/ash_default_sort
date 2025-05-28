@@ -6,14 +6,14 @@ defmodule ThisTest.Obj do
     domain: AshDefaultSort.TestDomain,
     extensions: [AshDefaultSort]
 
-  actions do
-    defaults [:read, create: :*]
-    read :list
-  end
-
   attributes do
     uuid_v7_primary_key :id
     attribute :age, :integer, allow_nil?: false, public?: true
+  end
+
+  actions do
+    defaults [:read, create: :*]
+    read :list
   end
 
   default_sort do
@@ -23,8 +23,11 @@ end
 
 defmodule ThisTest do
   use ExUnit.Case, async: true
+  Process.sleep(1000)
 
   test "pass" do
+    Process.sleep(1000)
+
     for age <- Enum.concat(1..5//2, 2..5//2) do
       Ash.Changeset.for_create(ThisTest.Obj, :create, %{age: age}) |> Ash.create!()
     end

@@ -56,7 +56,11 @@ end
 defmodule ThisTest do
   use ExUnit.Case, async: true
 
+  Process.sleep(1000)
+
   test "pass" do
+    Process.sleep(1000)
+
     params = %{title: "Todo List 1"}
     list = Ash.Changeset.for_create(ThisTest.TodoList, :create, params) |> Ash.create!()
 
