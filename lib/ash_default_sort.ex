@@ -31,6 +31,12 @@ defmodule AshDefaultSort do
         required: false,
         default: [],
         doc: "List of read actions to exclude"
+      ],
+      has_many_sort: [
+        type: :keyword_list,
+        required: false,
+        default: [],
+        doc: "The sort to apply when a has_many relationship has no sort"
       ]
     ],
     entities: []
@@ -38,5 +44,8 @@ defmodule AshDefaultSort do
 
   use Spark.Dsl.Extension,
     sections: [@default_sort],
-    transformers: [AshDefaultSort.Transformer]
+    transformers: [
+      AshDefaultSort.Sort.Transformer,
+      AshDefaultSort.HasManySort.Transformer
+    ]
 end
