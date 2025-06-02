@@ -2,7 +2,7 @@ defmodule AshDefaultSort do
   @default_sort %Spark.Dsl.Section{
     name: :default_sort,
     describe: """
-    Configure a default sort to apply when a read action has no sort.
+    Configure a default sort to apply when a read action or a has_many relationship has no sort.
     """,
     examples: [
       """

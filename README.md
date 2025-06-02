@@ -1,6 +1,6 @@
 # AshDefaultSort
 
-Configure a default sort to apply when a read action has no sort.
+Configure a default sort to apply when a read action or a has_many relationship has no sort.
 
 ## Installation
 

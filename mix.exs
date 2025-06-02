@@ -9,7 +9,8 @@ defmodule AshDefaultSort.MixProject do
       consolidate_protocols: Mix.env() not in [:dev, :test],
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      description: "Configure a default sort to apply when a read action has no sort.",
+      description:
+        "Configure a default sort to apply when a read action or a has_many relationship has no sort.",
       package: package(),
       source_url: "https://github.com/devall-org/ash_default_sort",
       homepage_url: "https://github.com/devall-org/ash_default_sort",
