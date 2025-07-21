@@ -1,12 +1,13 @@
 defmodule AshDefaultSort.HasManySort.Transformer do
+  @moduledoc false
   use Spark.Dsl.Transformer
   alias Spark.Dsl.Transformer
 
   @impl Spark.Dsl.Transformer
   def transform(dsl_state) do
-    except = Transformer.get_option(dsl_state, [:default_sort], :except)
+    except = Transformer.get_option(dsl_state, [:default_sort], :except, [])
 
-    case Transformer.get_option(dsl_state, [:default_sort], :has_many_sort) do
+    case Transformer.get_option(dsl_state, [:default_sort], :has_many_sort, []) do
       [] ->
         dsl_state
 

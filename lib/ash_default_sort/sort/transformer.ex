@@ -1,4 +1,5 @@
 defmodule AshDefaultSort.Sort.Transformer do
+  @moduledoc false
   use Spark.Dsl.Transformer
 
   alias Spark.Dsl.Transformer
@@ -7,12 +8,12 @@ defmodule AshDefaultSort.Sort.Transformer do
   def after?(_), do: true
 
   def transform(dsl_state) do
-    sort = Transformer.get_option(dsl_state, [:default_sort], :sort)
+    sort = Transformer.get_option(dsl_state, [:default_sort], :sort, [])
 
     include_primary_read? =
-      Transformer.get_option(dsl_state, [:default_sort], :include_primary_read?)
+      Transformer.get_option(dsl_state, [:default_sort], :include_primary_read?, false)
 
-    except = Transformer.get_option(dsl_state, [:default_sort], :except)
+    except = Transformer.get_option(dsl_state, [:default_sort], :except, [])
 
     dsl_state
     |> Transformer.get_entities([:actions])

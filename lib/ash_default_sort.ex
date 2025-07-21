@@ -1,4 +1,6 @@
 defmodule AshDefaultSort do
+  @moduledoc false
+
   @default_sort %Spark.Dsl.Section{
     name: :default_sort,
     describe: """
